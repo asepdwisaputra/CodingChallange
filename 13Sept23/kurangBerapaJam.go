@@ -46,19 +46,43 @@ func kapanMakanLagi(jamMakan time.Time) {
 		waktuBesokPagi := breakfast.Add(24 * time.Hour)
 		sisaWaktu = waktuBesokPagi.Sub(jamMakan)
 		waktu := pecahWaktu(sisaWaktu)
-		fmt.Printf("%d Hour and %d minutes until the next meal, breakfast tomorrow morning", waktu[0], waktu[1])
+		if waktu[1] == 0 {
+			fmt.Printf("%d Hour until the next meal, breakfast tomorrow morning", waktu[0])
+		} else if waktu[0] == 0 {
+			fmt.Printf("%d minutes until the next meal, breakfast tomorrow morning", waktu[1])
+		} else {
+			fmt.Printf("%d Hour and %d minutes until the next meal, breakfast tomorrow morning", waktu[0], waktu[1])
+		}
 	case jamMakan.Before(breakfast):
 		sisaWaktu = breakfast.Sub(jamMakan)
 		waktu := pecahWaktu(sisaWaktu)
-		fmt.Printf("%d Hour and %d minutes until the next meal, breakfast", waktu[0], waktu[1])
+		if waktu[1] == 0 {
+			fmt.Printf("%d Hour until the next meal, breakfast", waktu[0])
+		} else if waktu[0] == 0 {
+			fmt.Printf("%d minutes until the next meal, breakfast", waktu[1])
+		} else {
+			fmt.Printf("%d Hour and %d minutes until the next meal, breakfast", waktu[0], waktu[1])
+		}
 	case jamMakan.After(lunch):
 		sisaWaktu = dinner.Sub(jamMakan)
 		waktu := pecahWaktu(sisaWaktu)
-		fmt.Printf("%d Hour and %d minutes until the next meal, dinner", waktu[0], waktu[1])
+		if waktu[1] == 0 {
+			fmt.Printf("%d Hour until the next meal, dinner", waktu[0])
+		} else if waktu[0] == 0 {
+			fmt.Printf("%d minutes until the next meal, dinner", waktu[1])
+		} else {
+			fmt.Printf("%d Hour and %d minutes until the next meal, dinner", waktu[0], waktu[1])
+		}
 	case jamMakan.After(breakfast):
 		sisaWaktu = lunch.Sub(jamMakan)
 		waktu := pecahWaktu(sisaWaktu)
-		fmt.Printf("%d Hour and %d minutes until the next meal, lunch", waktu[0], waktu[1])
+		if waktu[1] == 0 {
+			fmt.Printf("%d Hour until the next meal, lunch", waktu[0])
+		} else if waktu[0] == 0 {
+			fmt.Printf("%d minutes until the next meal, lunch", waktu[1])
+		} else {
+			fmt.Printf("%d Hour and %d minutes until the next meal, lunch", waktu[0], waktu[1])
+		}
 	default:
 		fmt.Println("Nampaknya ada yang salah!😵‍💫")
 	}
@@ -80,11 +104,10 @@ func main() {
 		// kondisi true
 		layout := time.Kitchen
 		jamMakan, _ := time.Parse(layout, input)
-		fmt.Println(jamMakan)
 		kapanMakanLagi(jamMakan)
 	} else {
 		// false kondisi
-		fmt.Printf("Inputan kamu '%s' nampaknya salah😵‍💫\n\n", input)
+		fmt.Printf("Inputan kamu '%s' nampaknya salah 😵‍💫\n\n", input)
 		ketentuan := "Input yang kamu masukan terdeteksi tidak sesuai ketentuan/contoh!\nKetentuan(contoh-> 01:00PM):\n- Penulisan jam dan menit dipisahkan dengan tanda ':'\n- Penulisan waktu dengan format 12 Jam\n- Gunakan 'AM' KAPITAL untuk menandakan sebelum tengah hari\n- Gunakan 'PM' KAPITAL untuk menandakan sesudah tengah hari\n- Tidak ada karakter/simbol tambahan ya, Good Luck🫡"
 		fmt.Print(ketentuan)
 	}
