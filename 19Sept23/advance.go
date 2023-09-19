@@ -41,4 +41,10 @@ func main() {
 	hasil := TotalNilai(input)
 
 	fmt.Printf("Jumlah nilai urutan kamu adalah: %d", hasil)
+
+	/*
+		Kelemahan:
+		Bila inputan terlalu besar pasti akan membutuhkan waktu yang lama.
+		Karena inputan akan dikerjakan satu-persatu(Brute Force).
+	*/
 }
