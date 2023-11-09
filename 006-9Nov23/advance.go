@@ -34,8 +34,10 @@ import (
 	"fmt"
 )
 
-var totalPerulangan int
+// Global variable untuk melihat urutan perulangan
+var Perulangan int
 
+// Menjadikan nilai input menjadi digit-digit angka
 func CariDigit(n int) []int {
 	var digits []int
 	var digit int
@@ -49,6 +51,7 @@ func CariDigit(n int) []int {
 	return digits
 }
 
+// Mencari nilai apakah bernilai akhir 1 dan bahagia
 func CariNilai(digits []int) bool {
 	var result int
 
@@ -56,24 +59,31 @@ func CariNilai(digits []int) bool {
 		result = result + digit*digit
 	}
 
-	//fmt.Println(result, totalPerulangan)
+	// Melihat Urutan perulangan dan nilainya
+	fmt.Println("Perulangan ke", Perulangan, " bernilai", result)
 
-	if totalPerulangan == 100 {
+	// Kondisi nilai 4 artinya perulangan tak terbatas(false)
+	if result == 4 {
+		return false
+	}
+
+	// Kondisi perulangan mencapai 100 dianggap false
+	if Perulangan == 100 {
 		return false
 	}
 
 	if result == 1 {
 		return true
 	} else {
-		totalPerulangan = totalPerulangan + 1
+		Perulangan = Perulangan + 1
 		return CariNilai(CariDigit(result))
 	}
 }
 
 func main() {
 	// Membuat variabel input yang bernilai int(bulat positif)
-	var input int = 123
-	totalPerulangan = 0
+	var input int = 5
+	Perulangan = 0
 
 	fmt.Println(CariNilai(CariDigit(input)))
 }
