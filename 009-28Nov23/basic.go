@@ -21,7 +21,7 @@ func main() {
 			if nilaiKini > nilaiTerbesar {
 				nilaiTerbesar = nilaiKini
 			}
-			nilaiKini = 1
+			nilaiKini = 1 // ulang dari 1
 		}
 	}
 	if nilaiKini > nilaiTerbesar {
