@@ -2,10 +2,10 @@
 
 ## Advance
 
-[Soal Advance](advance.png)
+[Soal Advance](advance.png) <br>
 [Kode Program](advance.go)
 
 ## Basic
 
-[Soal Advance](basic.png)
+[Soal Advance](basic.png) <br>
 [Kode Program](basic.go)
